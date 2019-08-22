@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import examples.aaronhoskins.com.datapersistancedemo.model.datasource.local.database.PhoneDatabaseHelper;
 import examples.aaronhoskins.com.datapersistancedemo.model.phone.Phone;
 
 public class PhoneRecyclerViewAdapter extends RecyclerView.Adapter<PhoneRecyclerViewAdapter.ViewHolder> {
@@ -32,7 +33,13 @@ public class PhoneRecyclerViewAdapter extends RecyclerView.Adapter<PhoneRecycler
         Phone currentPhone = phonesList.get(position);
         holder.tvBrand.setText(currentPhone.getPhoneBrand());
         holder.tvModel.setText(currentPhone.getPhoneModel());
+        holder.tvId.setText(currentPhone.getId());
         holder.setPhone(currentPhone);
+    }
+
+    public void onDatabaseChange(ArrayList<Phone> updatedList) {
+        phonesList = updatedList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -43,12 +50,14 @@ public class PhoneRecyclerViewAdapter extends RecyclerView.Adapter<PhoneRecycler
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvBrand;
         TextView tvModel;
+        TextView tvId;
         Phone phone;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvBrand = itemView.findViewById(R.id.tvPhoneBrand);
             tvModel = itemView.findViewById(R.id.tvPhoneModel);
+            tvId = itemView.findViewById(R.id.tvPhoneId);
             itemView.setOnClickListener(this);
         }
         public Phone getPhone() {

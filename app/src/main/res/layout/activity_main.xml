@@ -26,4 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/btnStartPhoneDbActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Database Activity"
+        android:onClick="onClick"/>
+
 </LinearLayout>

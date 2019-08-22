@@ -1,10 +1,12 @@
 package examples.aaronhoskins.com.datapersistancedemo;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -71,12 +73,27 @@ public class DatabaseActivity extends AppCompatActivity
                 phone.setOsType(os);
                 phone.setPhoneSize(size);
                 dbHelper.insertPhoneIntoDB(phone);
+                adapter.onDatabaseChange(dbHelper.getAllPhones());
                 break;
             case R.id.btnDeleteFromData:
                 dbHelper.deletePhoneInDB(selectedId);
+                adapter.onDatabaseChange(dbHelper.getAllPhones());
                 break;
             case R.id.btnFindPhone:
-
+                final EditText taskEditText = new EditText(this);
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle("Enter Phone ID")
+                        .setMessage("Please Enter Id of Phone")
+                        .setView(taskEditText)
+                        .setPositiveButton("Search", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                onPhoneSelected(dbHelper.getPhoneById(taskEditText.getText().toString()));
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .create();
+                dialog.show();
                 break;
             case R.id.btnUpdateDatabase:
                 Phone phoneUpdate = new Phone();
@@ -89,6 +106,7 @@ public class DatabaseActivity extends AppCompatActivity
                 phoneUpdate.setOsType(osUpdate);
                 phoneUpdate.setPhoneSize(sizeUpdate);
                 dbHelper.updatePhoneInDB(selectedId, phoneUpdate);
+                adapter.onDatabaseChange(dbHelper.getAllPhones());
                 break;
         }
     }

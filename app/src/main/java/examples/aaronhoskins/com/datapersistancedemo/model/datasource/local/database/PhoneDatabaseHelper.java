@@ -47,6 +47,23 @@ public class PhoneDatabaseHelper extends SQLiteOpenHelper {
         return returnPhoneList;
     }
 
+    //Select All Method
+    public Phone getPhoneById(String id) {
+        Phone currentPhone = new Phone();
+        SQLiteDatabase readableDatabase = this.getReadableDatabase();
+        Cursor cursor = readableDatabase.rawQuery(PhoneDatabaseContract.QUERY_SELECT_BY_ID(id), null);
+
+        if(cursor.moveToFirst()) {
+                currentPhone.setPhoneBrand(cursor.getString(cursor.getColumnIndex(PhoneDatabaseContract.COL_BRAND)));
+                currentPhone.setPhoneModel(cursor.getString(cursor.getColumnIndex(PhoneDatabaseContract.COL_MODEL)));
+                currentPhone.setOsType(cursor.getString(cursor.getColumnIndex(PhoneDatabaseContract.COL_OS)));
+                currentPhone.setPhoneSize(cursor.getString(cursor.getColumnIndex(PhoneDatabaseContract.COL_SIZE)));
+                currentPhone.setId(String.valueOf(cursor.getInt(cursor.getColumnIndex(PhoneDatabaseContract.COL_ID))));
+        }
+
+        return currentPhone;
+    }
+
     //Insert Phone into database
     public void insertPhoneIntoDB(Phone phoneToSave) {
         SQLiteDatabase writableDatabase = this.getWritableDatabase();

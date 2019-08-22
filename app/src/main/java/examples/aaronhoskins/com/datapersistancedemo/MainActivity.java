@@ -2,6 +2,7 @@ package examples.aaronhoskins.com.datapersistancedemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +26,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        saveToSharedPref();
-        getAndDisplayValueOfSharedPref();
+        switch (view.getId()) {
+            case R.id.btnSaveToSharedPref:
+                saveToSharedPref();
+                getAndDisplayValueOfSharedPref();
+                break;
+            case R.id.btnStartPhoneDbActivity:
+                startActivity(new Intent(this, DatabaseActivity.class));
+                break;
+        }
+
     }
 
     public void saveToSharedPref() {
