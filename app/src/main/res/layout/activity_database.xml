@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DatabaseActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPhoneList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <EditText
+        android:id="@+id/etPhoneBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Brand"/>
+
+    <EditText
+        android:id="@+id/etPhoneModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Model"/>
+
+    <EditText
+        android:id="@+id/etPhoneSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Size"/>
+
+    <EditText
+        android:id="@+id/etPhoneOs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Os Type"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAddToDatabase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Insert"
+            android:onClick="onDatabaseCrudClicked"/>
+
+        <Button
+            android:id="@+id/btnDeleteFromData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Delete"
+            android:onClick="onDatabaseCrudClicked"/>
+
+        <Button
+            android:id="@+id/btnUpdateDatabase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Update"
+            android:onClick="onDatabaseCrudClicked"/>
+
+        <Button
+            android:id="@+id/btnFindPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Search"
+            android:onClick="onDatabaseCrudClicked"/>
+
+    </LinearLayout>
+
+</LinearLayout>
