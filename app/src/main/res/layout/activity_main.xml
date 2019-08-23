@@ -33,4 +33,22 @@
         android:text="Start Database Activity"
         android:onClick="onClick"/>
 
+    <EditText
+        android:id="@+id/etSaveToFileInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter String To Save"/>
+
+    <Button
+        android:id="@+id/btnSaveToFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save String To File"
+        android:onClick="onClick"/>
+
+    <TextView
+        android:id="@+id/tvValueInFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
